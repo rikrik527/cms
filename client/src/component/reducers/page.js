@@ -1,4 +1,4 @@
-import {ADD_PAGE, PAGE_ERROR, CLEAR_PAGE_DATA, REMOVE_MODAL, GET_PAGE} from '../actions/type'
+import {ADD_PAGE, PAGE_ERROR, CLEAR_PAGE_DATA, REMOVE_MODAL,SORT_PAGE, GET_PAGE} from '../actions/type'
 
 const initialState = {
 
@@ -12,26 +12,25 @@ export default function (state = initialState, action) {
     case CLEAR_PAGE_DATA:
       return {
         ...state,
-        content: null,
-        title: null,
-        slug: null,
+        pages:[],
         loading: false
       }
+      case SORT_PAGE:
     case ADD_PAGE:
       return {
         ...state,
         pages:payload,
-        loading:false
+        loading:true
       }
     case GET_PAGE:
       return {
         ...state,
-        pages: payload,
+        pages:payload,
         loading: false
       }
     case PAGE_ERROR:
-      console.log(state.title, state.slug, state.content)
-    case CLEAR_PAGE_DATA:
+      console.log(payload)
+   
       return {
         ...state,
         error: payload,
